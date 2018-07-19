@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvcWeather.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,9 @@ namespace MvcWeather
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            // Load web.config values
+            ConfigurationSettings.LoadSettings();
         }
     }
 }

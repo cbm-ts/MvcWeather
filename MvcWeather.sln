@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcWeather", "MvcWeather\MvcWeather.csproj", "{DD4FA191-E7B9-4397-948F-89DDA1A74EAA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcWeather.DataAccess", "MvcWeather.DataAccess\MvcWeather.DataAccess.csproj", "{63691A43-3442-4612-9C04-A381075B802B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcWeather.Common", "MvcWeather.Common\MvcWeather.Common.csproj", "{5A0D1297-C541-473D-A1B9-78F68C29A680}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{DD4FA191-E7B9-4397-948F-89DDA1A74EAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD4FA191-E7B9-4397-948F-89DDA1A74EAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD4FA191-E7B9-4397-948F-89DDA1A74EAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63691A43-3442-4612-9C04-A381075B802B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63691A43-3442-4612-9C04-A381075B802B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63691A43-3442-4612-9C04-A381075B802B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63691A43-3442-4612-9C04-A381075B802B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A0D1297-C541-473D-A1B9-78F68C29A680}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A0D1297-C541-473D-A1B9-78F68C29A680}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A0D1297-C541-473D-A1B9-78F68C29A680}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A0D1297-C541-473D-A1B9-78F68C29A680}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
