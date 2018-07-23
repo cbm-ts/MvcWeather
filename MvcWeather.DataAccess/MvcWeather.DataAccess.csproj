@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LocationDA.cs" />
     <Compile Include="WeatherDA.cs" />
     <Compile Include="BaseDA.cs" />
     <Compile Include="Context.cs" />

@@ -1,0 +1,62 @@
+﻿@using MvcWeather.DataAccess.Models;
+@model MvcWeather.Models.ViewModels.WeatherVM
+
+<div class="row">
+    <p>The forecast for @Model.Date.ToString("D") in @Model.Location (@Model.ZipCode):</p>
+</div>
+
+<div class="row">
+    @foreach (var weather in Model.TodaysWeather)
+    {
+        <div class="col-md-4">
+            <h2>@weather.TimePeriod.ToString()</h2>
+            <p>
+                @if (weather.Status == WeatherType.Sunny)
+                {
+                    if (weather.TimePeriod == TimePeriod.Night)
+                    {
+                        <div class="wi wi-night-sunny icon"></div>
+                    }
+                    else
+                    {
+                        <div class="wi wi-day-sunny icon"></div>
+                    }
+                }
+                else if (weather.Status == WeatherType.Rainy)
+                {
+                    if (weather.TimePeriod == TimePeriod.Night)
+                    {
+                        <div class="wi wi-night-rain icon"></div>
+                    }
+                    else
+                    {
+                        <div class="wi wi-day-rain icon"></div>
+                    }
+                }
+                else if (weather.Status == WeatherType.Cloudy)
+                {
+                    if (weather.TimePeriod == TimePeriod.Night)
+                    {
+                        <div class="wi wi-night-alt-cloudy icon"></div>
+                    }
+                    else
+                    {
+                        <div class="wi wi-day-alt-cloudy icon"></div>
+                    }
+                }
+                else
+                {
+                    if (weather.TimePeriod == TimePeriod.Night)
+                    {
+                        <div class="wi wi-night-fog icon"></div>
+                    }
+                    else
+                    {
+                        <div class="wi wi-day-fog icon"></div>
+                    }
+                }
+                @weather.Status.ToString() - @weather.Temperature°
+            </p>
+        </div>
+    }
+</div>
