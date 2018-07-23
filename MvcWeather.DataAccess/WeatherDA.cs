@@ -13,14 +13,12 @@ namespace MvcWeather.DataAccess
     {
         public WeatherDA(Context ctx) : base(ctx) { }
 
-        public Weather GetTodaysWeatherByZip(string zipCode, DateTime date)
+        public List<Weather> GetTodaysWeatherByZip(int zipCode, DateTime date)
         {
-            Weather weather = new Weather();
+            List<Weather> todaysWeather = new List<Weather>();
             string commandText =
 @"SELECT
-     l.City
-    ,l.State
-    ,w.Temperature
+     w.Temperature
     ,w.Status
     ,w.TimePeriod
     ,w.Date
@@ -40,15 +38,17 @@ WHERE l.ZipCode = @ZipCode
                 {
                     while(reader.Read())
                     {
-                        weather.Temperature = reader.IsDBNull(2) ? 0 : reader.GetInt32(2);
-                        weather.Status = reader.IsDBNull(3) ? 0 : (WeatherType)Enum.Parse(typeof(WeatherType), reader.GetString(3));
-                        weather.TimePeriod = reader.IsDBNull(4) ? 0 : (TimePeriod)Enum.Parse(typeof(TimePeriod), reader.GetString(4));
-                        weather.Date = reader.IsDBNull(5) ? date : reader.GetDateTime(5);
+                        Weather weather = new Weather();
+                        weather.Temperature = reader.IsDBNull(0) ? 0 : reader.GetInt32(2);
+                        weather.Status = reader.IsDBNull(1) ? 0 : (WeatherType)Enum.Parse(typeof(WeatherType), reader.GetString(1));
+                        weather.TimePeriod = reader.IsDBNull(2) ? 0 : (TimePeriod)Enum.Parse(typeof(TimePeriod), reader.GetString(2));
+                        weather.Date = reader.IsDBNull(3) ? date : reader.GetDateTime(3);
+                        todaysWeather.Add(weather);
                     }
                 }
             }
 
-            return weather;
+            return todaysWeather;
         }
     }
 }

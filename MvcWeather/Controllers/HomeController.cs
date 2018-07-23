@@ -1,4 +1,5 @@
-﻿using MvcWeather.DataAccess.Models;
+﻿using MvcWeather.DataAccess;
+using MvcWeather.DataAccess.Models;
 using MvcWeather.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,42 +13,48 @@ namespace MvcWeather.Controllers
     {
         public ActionResult Index()
         {
-            WeatherVM model = new WeatherVM();
-            model.Date = DateTime.Now;
-            model.ZipCode = 30809;
-            return View(model);
+            return View(new WeatherVM());
         }
 
         
         public ActionResult FindWeather(WeatherVM model)
         {
-            model.ZipCode = 30809;
-            model.Location = "Evans, GA";
-            model.TodaysWeather = new List<Weather>();
-            model.TodaysWeather.Add(
-                new Weather
-                {
-                    Temperature = 70,
-                    Status = WeatherType.Sunny,
-                    TimePeriod = TimePeriod.Morning
-                }
-            );
-            model.TodaysWeather.Add(
-                new Weather
-                {
-                    Temperature = 95,
-                    Status = WeatherType.Rainy,
-                    TimePeriod = TimePeriod.Afternoon
-                }
-            );
-            model.TodaysWeather.Add(
-                new Weather
-                {
-                    Temperature = 75,
-                    Status = WeatherType.Cloudy,
-                    TimePeriod = TimePeriod.Night
-                }
-            );
+            model.Date = DateTime.Now;
+            using (Context ctx = new Context())
+            {
+                LocationDA locationDA = new LocationDA(ctx);
+                model.Location = locationDA.GetLocationByZip(model.ZipCode);
+                WeatherDA weatherDA = new WeatherDA(ctx);
+                model.TodaysWeather = weatherDA.GetTodaysWeatherByZip(model.ZipCode, model.Date);
+            }
+
+            //model.ZipCode = 30809;
+            //model.Location = "Evans, GA";
+            //model.TodaysWeather = new List<Weather>();
+            //model.TodaysWeather.Add(
+            //    new Weather
+            //    {
+            //        Temperature = 70,
+            //        Status = WeatherType.Sunny,
+            //        TimePeriod = TimePeriod.Morning
+            //    }
+            //);
+            //model.TodaysWeather.Add(
+            //    new Weather
+            //    {
+            //        Temperature = 95,
+            //        Status = WeatherType.Rainy,
+            //        TimePeriod = TimePeriod.Afternoon
+            //    }
+            //);
+            //model.TodaysWeather.Add(
+            //    new Weather
+            //    {
+            //        Temperature = 75,
+            //        Status = WeatherType.Cloudy,
+            //        TimePeriod = TimePeriod.Night
+            //    }
+            //);
             return PartialView("_TodaysWeather", model);
         }
     }

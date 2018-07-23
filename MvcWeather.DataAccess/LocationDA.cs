@@ -13,7 +13,7 @@ namespace MvcWeather.DataAccess
     {
         public LocationDA(Context ctx) : base(ctx) { }
 
-        public string GetLocationByZip(string zipCode, DateTime date)
+        public string GetLocationByZip(int zipCode)
         {
             Location location = new Location();
             string commandText =
